@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("84KuB8Lxhs14j8PRWYtexYDRQp9Lcsm2SFUyhRZPyxhV");
+declare_id!("6fv1QAQC5t5DtCpqNf78sf2EW5XGj2YHPqpkwdxP7tiU");
 
 #[program]
 pub mod dapp_starter {
@@ -19,8 +19,8 @@ pub mod dapp_starter {
 #[derive(Accounts)]
 pub struct Initialize<'info>{
     #[account(
-        init, 
-        payer = deployer, 
+        init,
+        payer = deployer,
         space = 8 + 8,
     )]
     pub config: Account<'info, Counter>,

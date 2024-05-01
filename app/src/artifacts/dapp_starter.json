@@ -8,7 +8,7 @@
         {
           "name": "config",
           "isMut": true,
-          "isSigner": true
+          "isSigner": false
         },
         {
           "name": "deployer",

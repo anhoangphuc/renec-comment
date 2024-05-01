@@ -8,7 +8,7 @@ export type DappStarter = {
         {
           "name": "config",
           "isMut": true,
-          "isSigner": true
+          "isSigner": false
         },
         {
           "name": "deployer",
@@ -66,7 +66,7 @@ export const IDL: DappStarter = {
         {
           "name": "config",
           "isMut": true,
-          "isSigner": true
+          "isSigner": false
         },
         {
           "name": "deployer",

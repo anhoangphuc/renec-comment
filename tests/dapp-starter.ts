@@ -5,21 +5,27 @@ import * as assert from "assert";
 
 describe("dapp-starter", () => {
   // Configure the client to use the local cluster.
-  anchor.setProvider(anchor.Provider.env());
-  const config = anchor.web3.Keypair.generate();
+  const provider = anchor.Provider.env();
+  anchor.setProvider(provider);
 
   const program = anchor.workspace.DappStarter as Program<DappStarter>;
+  const config = anchor.web3.Keypair.generate();
 
   it("Is initialized!", async () => {
-    const tx = await program.rpc.initialize({
-      accounts: {
-        config: config.publicKey,
-        deployer: program.provider.wallet.publicKey,
-        systemProgram: anchor.web3.SystemProgram.programId,
-      },
-      signers: [config],
-    });
-    console.log("Your transaction signature", tx);
+    try {
+      const tx = await program.rpc.initialize({
+        accounts: {
+          config: config.publicKey,
+          deployer: program.provider.wallet.publicKey,
+          systemProgram: anchor.web3.SystemProgram.programId,
+        },
+        signers: [config],
+      });
+      console.log("Your transaction signature", tx);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
 
     // Get the new counter value
     const counter = await program.account.counter.fetch(config.publicKey);

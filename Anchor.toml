@@ -1,12 +1,12 @@
 [programs.localnet]
-dapp_starter = "ChK6NFUxhKSvKA1dM3x4jeriFpyk2FXjDYyxs8FNFm4w"
+dapp_starter = "6fv1QAQC5t5DtCpqNf78sf2EW5XGj2YHPqpkwdxP7tiU"
 
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
 cluster = "localnet"
-wallet = "~/.config/renec/id.json"
+wallet = "./.wallets/hoangphuc.json"
 
 [scripts]
-test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/dapp-starter.ts"
