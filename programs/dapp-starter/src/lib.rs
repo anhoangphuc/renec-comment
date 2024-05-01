@@ -1,3 +1,5 @@
+mod states;
+
 use anchor_lang::prelude::*;
 
 declare_id!("6fv1QAQC5t5DtCpqNf78sf2EW5XGj2YHPqpkwdxP7tiU");
@@ -17,7 +19,7 @@ pub mod dapp_starter {
 }
 
 #[derive(Accounts)]
-pub struct Initialize<'info>{
+pub struct Initialize<'info> {
     #[account(
         init,
         payer = deployer,
@@ -32,10 +34,8 @@ pub struct Initialize<'info>{
 }
 
 #[derive(Accounts)]
-pub struct Increment<'info>{
-    #[account(
-        mut
-    )]
+pub struct Increment<'info> {
+    #[account(mut)]
     pub config: Account<'info, Counter>,
 
     #[account(mut)]
