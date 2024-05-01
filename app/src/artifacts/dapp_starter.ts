@@ -3,15 +3,15 @@ export type DappStarter = {
   "name": "dapp_starter",
   "instructions": [
     {
-      "name": "initialize",
+      "name": "userRegister",
       "accounts": [
         {
-          "name": "config",
+          "name": "userState",
           "isMut": true,
           "isSigner": false
         },
         {
-          "name": "deployer",
+          "name": "signer",
           "isMut": true,
           "isSigner": true
         },
@@ -24,31 +24,58 @@ export type DappStarter = {
       "args": []
     },
     {
-      "name": "increment",
+      "name": "addComment",
       "accounts": [
         {
-          "name": "config",
+          "name": "userComment",
           "isMut": true,
           "isSigner": false
         },
         {
-          "name": "user",
+          "name": "userState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "signer",
           "isMut": true,
           "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
         }
       ],
-      "args": []
+      "args": [
+        {
+          "name": "comment",
+          "type": "string"
+        }
+      ]
     }
   ],
   "accounts": [
     {
-      "name": "counter",
+      "name": "userComment",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "count",
-            "type": "u64"
+            "name": "comment",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "userState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "commentCount",
+            "type": "u8"
           }
         ]
       }
@@ -61,15 +88,15 @@ export const IDL: DappStarter = {
   "name": "dapp_starter",
   "instructions": [
     {
-      "name": "initialize",
+      "name": "userRegister",
       "accounts": [
         {
-          "name": "config",
+          "name": "userState",
           "isMut": true,
           "isSigner": false
         },
         {
-          "name": "deployer",
+          "name": "signer",
           "isMut": true,
           "isSigner": true
         },
@@ -82,31 +109,58 @@ export const IDL: DappStarter = {
       "args": []
     },
     {
-      "name": "increment",
+      "name": "addComment",
       "accounts": [
         {
-          "name": "config",
+          "name": "userComment",
           "isMut": true,
           "isSigner": false
         },
         {
-          "name": "user",
+          "name": "userState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "signer",
           "isMut": true,
           "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
         }
       ],
-      "args": []
+      "args": [
+        {
+          "name": "comment",
+          "type": "string"
+        }
+      ]
     }
   ],
   "accounts": [
     {
-      "name": "counter",
+      "name": "userComment",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "count",
-            "type": "u64"
+            "name": "comment",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "userState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "commentCount",
+            "type": "u8"
           }
         ]
       }

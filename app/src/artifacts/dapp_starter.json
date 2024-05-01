@@ -3,15 +3,15 @@
   "name": "dapp_starter",
   "instructions": [
     {
-      "name": "initialize",
+      "name": "userRegister",
       "accounts": [
         {
-          "name": "config",
+          "name": "userState",
           "isMut": true,
           "isSigner": false
         },
         {
-          "name": "deployer",
+          "name": "signer",
           "isMut": true,
           "isSigner": true
         },
@@ -24,31 +24,58 @@
       "args": []
     },
     {
-      "name": "increment",
+      "name": "addComment",
       "accounts": [
         {
-          "name": "config",
+          "name": "userComment",
           "isMut": true,
           "isSigner": false
         },
         {
-          "name": "user",
+          "name": "userState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "signer",
           "isMut": true,
           "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
         }
       ],
-      "args": []
+      "args": [
+        {
+          "name": "comment",
+          "type": "string"
+        }
+      ]
     }
   ],
   "accounts": [
     {
-      "name": "Counter",
+      "name": "UserComment",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "count",
-            "type": "u64"
+            "name": "comment",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "commentCount",
+            "type": "u8"
           }
         ]
       }
