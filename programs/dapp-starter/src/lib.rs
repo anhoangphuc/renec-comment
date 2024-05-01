@@ -1,5 +1,8 @@
+mod instructions;
 mod states;
 
+use crate::instructions::*;
+use crate::states::*;
 use anchor_lang::prelude::*;
 
 declare_id!("6fv1QAQC5t5DtCpqNf78sf2EW5XGj2YHPqpkwdxP7tiU");
@@ -7,42 +10,12 @@ declare_id!("6fv1QAQC5t5DtCpqNf78sf2EW5XGj2YHPqpkwdxP7tiU");
 #[program]
 pub mod dapp_starter {
     use super::*;
-    pub fn initialize(_ctx: Context<Initialize>) -> ProgramResult {
-        Ok(())
+
+    pub fn user_register(ctx: Context<UserRegister>) -> ProgramResult {
+        user_register::handle(ctx)
     }
 
-    pub fn increment(ctx: Context<Increment>) -> ProgramResult {
-        let config = &mut ctx.accounts.config;
-        config.count += 1;
-        Ok(())
+    pub fn add_comment(ctx: Context<AddComment>, comment: String) -> ProgramResult {
+        add_comment::handle(ctx, comment)
     }
-}
-
-#[derive(Accounts)]
-pub struct Initialize<'info> {
-    #[account(
-        init,
-        payer = deployer,
-        space = 8 + 8,
-    )]
-    pub config: Account<'info, Counter>,
-
-    #[account(mut)]
-    pub deployer: Signer<'info>,
-
-    pub system_program: Program<'info, System>,
-}
-
-#[derive(Accounts)]
-pub struct Increment<'info> {
-    #[account(mut)]
-    pub config: Account<'info, Counter>,
-
-    #[account(mut)]
-    pub user: Signer<'info>,
-}
-
-#[account]
-pub struct Counter {
-    pub count: u64,
 }
